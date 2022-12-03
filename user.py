@@ -20,6 +20,7 @@ class User:
             print("Membership: Inactive")
         print("Membership Points:", self.gold_card_points)
         print()
+        return self
 
     def enroll(self):
         if not self.is_rewards_member:
@@ -30,12 +31,13 @@ class User:
         else:
             print("Already enrolled in membership program.")
         print()
+        return self
 
     def spend_points(self, amount):
         if not self.is_rewards_member:
             print("Please enroll in membership program to spend points.")
             print()
-            return
+            return self
         if self.gold_card_points >= amount:
             self.gold_card_points -= amount
             print("Points Spent =", amount)
@@ -43,20 +45,13 @@ class User:
         else:
             print("Insufficient Points")
         print()
+        return self
 
 Ada = User("Ada", "Leg", "Ada.Leg@email.com", "34")
-Ada.display_info()
-Ada.spend_points(1)
-Ada.enroll()
-Ada.enroll()
-Ada.display_info()
-Ada.spend_points(50)
-Ada.spend_points(250)
+Ada.display_info().spend_points(1).enroll().enroll().display_info().spend_points(50).spend_points(250)
 
 Sam = User("Samwise", "Gamgee", "samgee@email.com", 22)
-Sam.display_info()
-Sam.enroll()
-Sam.spend_points(80)
+Sam.display_info().enroll().spend_points(80)
 
 Frodo = User("Frodo", "Gamgee", "frogee@email.com", 23)
 Frodo.display_info()
